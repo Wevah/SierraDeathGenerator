@@ -7,7 +7,10 @@ function filterGenerators(str) {
 	
 	try {
 		regex = new RegExp(str, 'ig');
-		toKeep = Array.from(generators).filter(x => regex.test(x.innerText));
+		toKeep = Array.from(generators).filter(x => {
+			regex.lastIndex = 0;
+			return regex.test(x.innerText);
+		});
 	} catch (error) {
 		toKeep = generators;
 	}
