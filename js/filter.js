@@ -7,24 +7,24 @@ function filterGenerators(str) {
 	
 	try {
 		regex = new RegExp(str, 'ig');
-		toKeep = Array.from(generators).filter(x => {
+		toKeep = Array.from(generators).filter(generator => {
 			regex.lastIndex = 0;
-			return regex.test(x.innerText);
+			return regex.test(generator.innerText);
 		});
 	} catch (error) {
 		toKeep = generators;
 	}
 	
-	for (let x of generators) {
-		x.style.display = 'none';
-		resetMatchHighlight(x)
+	for (let generator of generators) {
+		generator.style.display = 'none';
+		resetMatchHighlight(generator)
 	}
 	
-	for (let x of toKeep) {
-		x.style.display = 'inline-block';
+	for (let generator of toKeep) {
+		generator.style.display = 'inline-block';
 		
 		if (regex)
-			highlightMatchInElement(regex, x);
+			highlightMatchInElement(regex, generator);
 	}
 }
 
