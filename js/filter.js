@@ -6,7 +6,7 @@ function filterGenerators(str) {
 	
 	try {
 		let regex = new RegExp(str, 'i');
-		toKeep = Array.from(generators).filter(x => x.innerText.search(regex) != -1);
+		toKeep = Array.from(generators).filter(x => regex.test(x.innerText));
 	} catch (error) {
 		toKeep = generators;
 	}
