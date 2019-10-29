@@ -2,17 +2,19 @@
 
 function filterGenerators(str) {
 	let generators = document.getElementsByClassName('generator-switcher');
-	let toKeep;
+	let toKeep = generators;
 	let regex;
 	
-	try {
-		regex = new RegExp(str, 'ig');
-		toKeep = Array.from(generators).filter(generator => {
-			regex.lastIndex = 0;
-			return regex.test(generator.innerText);
-		});
-	} catch (error) {
-		toKeep = generators;
+	if (str.length != 0) {
+		try {
+			regex = new RegExp(str, 'ig');
+			toKeep = Array.from(generators).filter(generator => {
+				regex.lastIndex = 0;
+				return regex.test(generator.innerText);
+			});
+		} catch (error) {
+			// Nothing; keep toKeep as all generators.
+		}
 	}
 	
 	for (let generator of generators) {
